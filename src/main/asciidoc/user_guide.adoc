@@ -1,0 +1,163 @@
+= RESTful Twitter-Alike API Guide
+Piotr Sykała;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+
+[[start]]
+= How to run the application
+
+1. Download the code and build it from the command line: `mvn clean package` (or `./mvnw clean package`).
+2. Run the application: `mvn spring-boot:run` (or `./mvnw spring-boot:run`). You can also run it by using the executable jar: `java -jar target/twitter-api-1.0.0.jar`. The application will be running on http://localhost:8080.
+
+[[resources]]
+= Resources
+
+
+[[resources-users]]
+== Users
+
+This is the entry point of the service.
+
+[[resources-users-create]]
+=== Create a user
+
+A `POST` request is used to create a new user. You can also create a user (automatically) by publishing a post (see the section 'Publish a post'). 
+
+==== Request structure
+
+include::{snippets}/users/create/http-request.adoc[]
+
+==== Request fields
+
+include::{snippets}/users/create/request-fields.adoc[]
+
+==== Example response
+
+include::{snippets}/users/create/http-response.adoc[]
+
+==== CURL request
+
+include::{snippets}/users/create/curl-request.adoc[]
+
+[[resources-users-list]]
+=== Get all registered users
+
+A `GET` request is used to retrieve a list of all registered users.
+
+==== Request structure
+
+include::{snippets}/users/list/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/users/list/http-response.adoc[]
+
+==== Response fields
+
+include::{snippets}/users/list/response-fields.adoc[]
+
+==== CURL request
+
+include::{snippets}/users/list/curl-request.adoc[]
+
+[[resources-followed-users]]
+== Followed users
+
+[[resources-users-follow]]
+=== Follow another user
+
+A 'POST' request is used to start following another user.
+
+==== Request structure
+
+include::{snippets}/users/follow/http-request.adoc[]
+
+==== Request fields
+
+include::{snippets}/users/follow/request-fields.adoc[]
+
+==== Example response
+
+A response contains the list of all followed users.
+
+include::{snippets}/users/follow/http-response.adoc[]
+
+==== CURL request
+
+include::{snippets}/users/follow/curl-request.adoc[]
+
+[[resources-posts]]
+== Posts
+
+[[resources-posts-publish]]
+=== Publish a post
+
+A `POST` request is used to publish a short text. If the user with the name contained in the URI path does not exists, he will be created.
+
+==== Request structure
+
+include::{snippets}/posts/create/http-request.adoc[]
+
+==== Request fields
+
+include::{snippets}/posts/create/request-fields.adoc[]
+
+==== Example response
+
+include::{snippets}/posts/create/http-response.adoc[]
+
+==== CURL request
+
+include::{snippets}/posts/create/curl-request.adoc[]
+
+[[resources-posts-list]]
+=== Get the wall
+
+A `GET` request is used to retrieve all posts published by a given user in reverse chronological order.
+
+==== Request structure
+
+include::{snippets}/posts/list/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/posts/list/http-response.adoc[]
+
+==== Response fields
+
+include::{snippets}/posts/list/response-fields.adoc[]
+
+==== CURL request
+
+include::{snippets}/posts/list/curl-request.adoc[]
+
+[[resources-timelines]]
+== Timelines
+
+[[resources-timelines-list]]
+=== Get the timeline
+
+A `GET` request is used to retrieve all posts published by all followed users.
+
+==== Request structure
+
+include::{snippets}/timelines/http-request.adoc[]
+
+==== Example response
+
+A response contains all posts published by the followed users in reverse chronological order
+
+include::{snippets}/timelines/http-response.adoc[]
+
+==== Response fields
+
+include::{snippets}/timelines/response-fields.adoc[]
+
+==== CURL request
+
+include::{snippets}/timelines/curl-request.adoc[]
